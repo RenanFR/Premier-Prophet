@@ -32,22 +32,27 @@ def fetch_fixture_data():
 
     return data
 
+# Helper function to parse a single match
+
+
+def parse_single_match(match):
+    return {
+        'id': match['fixture']['id'],
+        'date': pd.to_datetime(match['fixture']['date'], utc=True),
+        'home_team': match['teams']['home']['name'],
+        'away_team': match['teams']['away']['name'],
+        'home_logo': match['teams']['home']['logo'],
+        'away_logo': match['teams']['away']['logo']
+    }
+
 # Function to parse JSON and create Pandas DataFrame
 
 
 def parse_json_to_dataframe(json_data):
     fixtures = json_data['response']
 
-    # Create a list of dictionaries with required fields
-    fixture_list = [
-        {'date': pd.to_datetime(fixture['fixture']['date'], utc=True),
-         'home_team': fixture['teams']['home']['name'],
-         'away_team': fixture['teams']['away']['name'],
-         'home_logo': fixture['teams']['home']['logo'],
-         'away_logo': fixture['teams']['away']['logo']
-         }
-        for fixture in fixtures
-    ]
+    # Use parse_single_match to parse each match
+    fixture_list = [parse_single_match(fixture) for fixture in fixtures]
 
     # Create a DataFrame from the list
     df = pd.DataFrame(fixture_list)
@@ -76,6 +81,22 @@ def get_fixtures():
 
     # Return the unescaped JSON response
     return jsonify({'fixtures': unescaped_json})
+
+# Define an endpoint to get match details
+
+
+@app.route('/api/match/<int:match_id>', methods=['GET'])
+def get_match_details(match_id):
+    fixtures = fetch_fixture_data()
+    # Find the match with the given ID
+    match = next(
+        (fixture for fixture in fixtures['response'] if fixture['fixture']['id'] == match_id), None)
+
+    if match:
+        parsed_match = parse_single_match(match)
+        return jsonify(parsed_match)
+    else:
+        return jsonify({'error': 'Match not found'}), 404
 
 
 if __name__ == '__main__':
