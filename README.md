@@ -18,7 +18,7 @@ Premier Prophet is a web application designed to visualize predictions of match 
 ## Usage
 1. **Run the Backend API:**
     - Navigate to the backend directory: `cd backend`
-    - Follow the instructions in the README to set up and run the backend.
+    - Execute: `python backend.py`
 
 2. **Run the Frontend Application:**
     - Navigate to the frontend directory: `cd frontend`
@@ -28,15 +28,6 @@ Premier Prophet is a web application designed to visualize predictions of match 
 ## Features
 - **Upcoming Fixtures:** View a list of upcoming fixtures grouped by date, with details on home teams, away teams, and kickoff timings.
 - **User-Friendly Interface:** The application provides an intuitive and easy-to-navigate interface for exploring football fixtures.
-- **Title Case Headers:** Fixture details are presented with headers in title case for improved readability.
-- **Date Format:** Fixture dates are displayed in the "dd/MM/yyyy" format for better understanding.
-- **Page Title:** The page title is set to "Premier Prophet" for a branded experience.
-
-## Customization
-Feel free to customize the application according to your preferences. You can explore additional features, improve the UI, or extend the functionality as needed.
-
-## Contributing
-If you'd like to contribute to the development of Premier Prophet, please follow the guidelines outlined in the CONTRIBUTING.md file.
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
