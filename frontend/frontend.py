@@ -4,10 +4,14 @@ import pandas as pd
 import requests
 
 # Function to fetch fixtures from the backend API
+
+
 def get_fixtures():
-    response = requests.get('http://localhost:5000/api/fixtures')  # Update the URL accordingly
+    # Update the URL accordingly
+    response = requests.get('http://localhost:5000/api/fixtures')
     data = response.json()
     return data.get('fixtures', [])
+
 
 # Get fixtures from the backend
 fixtures = get_fixtures()
@@ -28,23 +32,24 @@ df['Kickoff Hour'] = pd.to_datetime(df['Date']).dt.strftime('%H:%M')
 df = df.sort_values(by='Date')
 
 # Display fixtures grouped by date with home team as the first column
-grouped_fixtures = df.groupby('Date', sort=False)  # Set sort to False for custom sorting
+# Set sort to False for custom sorting
+grouped_fixtures = df.groupby('Date', sort=False)
 for date, group in grouped_fixtures:
     formatted_date = pd.to_datetime(date).strftime('%d/%m/%Y')
     st.subheader(formatted_date)
-    
+
     # Sort the group by kickoff hour
     group = group.sort_values(by='Kickoff Hour')
-    
+
     # Create an HTML table with home and away team logos and kickoff hour
     table_html = "<table><tr><th>Home Team</th><th>Away Team</th><th>Kickoff Hour</th></tr>"
-    
+
     for index, row in group.iterrows():
         home_team_logo = f"<img src='{row['Home Logo']}' alt='{row['Home Team']}' width='32'>"
         away_team_logo = f"<img src='{row['Away Logo']}' alt='{row['Away Team']}' width='32'>"
         table_html += f"<tr><td>{home_team_logo} {row['Home Team']}</td><td>{away_team_logo} {row['Away Team']}</td><td>{row['Kickoff Hour']}</td></tr>"
-    
+
     table_html += "</table>"
-    
+
     # Display the HTML table
     st.markdown(table_html, unsafe_allow_html=True)
