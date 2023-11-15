@@ -36,5 +36,15 @@ for date, group in grouped_fixtures:
     # Sort the group by kickoff hour
     group = group.sort_values(by='Kickoff Hour')
     
-    # Display the table with home team, away team, and kickoff hour
-    st.table(group[['Home Team', 'Away Team', 'Kickoff Hour']])
+    # Create an HTML table with home and away team logos and kickoff hour
+    table_html = "<table><tr><th>Home Team</th><th>Away Team</th><th>Kickoff Hour</th></tr>"
+    
+    for index, row in group.iterrows():
+        home_team_logo = f"<img src='{row['Home Logo']}' alt='{row['Home Team']}' width='32'>"
+        away_team_logo = f"<img src='{row['Away Logo']}' alt='{row['Away Team']}' width='32'>"
+        table_html += f"<tr><td>{home_team_logo} {row['Home Team']}</td><td>{away_team_logo} {row['Away Team']}</td><td>{row['Kickoff Hour']}</td></tr>"
+    
+    table_html += "</table>"
+    
+    # Display the HTML table
+    st.markdown(table_html, unsafe_allow_html=True)
