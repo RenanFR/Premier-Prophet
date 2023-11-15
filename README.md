@@ -8,8 +8,8 @@ Premier Prophet is a web application designed to visualize predictions of match 
 - [Features](#features)
 
 ## Installation
-1. Clone the repository: `git clone <repository_url>`
-2. Navigate to the project directory: `cd <project_directory>`
+1. Clone the repository: `git clone https://github.com/RenanFR/Premier-Prophet.git`
+2. Navigate to the project directory: `cd Premier-Prophet`
 3. Install dependencies: `pip install -r requirements.txt`
 
 ## Usage
