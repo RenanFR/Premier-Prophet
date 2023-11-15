@@ -6,9 +6,6 @@ Premier Prophet is a web application designed to visualize predictions of match 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Features](#features)
-- [Customization](#customization)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Installation
 1. Clone the repository: `git clone <repository_url>`
@@ -28,6 +25,3 @@ Premier Prophet is a web application designed to visualize predictions of match 
 ## Features
 - **Upcoming Fixtures:** View a list of upcoming fixtures grouped by date, with details on home teams, away teams, and kickoff timings.
 - **User-Friendly Interface:** The application provides an intuitive and easy-to-navigate interface for exploring football fixtures.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
