@@ -1,7 +1,6 @@
 import requests
 import boto3
 import pandas as pd
-from io import BytesIO
 import os
 from dotenv import load_dotenv
 
@@ -68,5 +67,5 @@ def fetch_and_store_fixtures(start_season, end_season):
 if __name__ == "__main__":
     start_season = 2010
     end_season = 2023
-    
+
     fetch_and_store_fixtures(start_season, end_season)
