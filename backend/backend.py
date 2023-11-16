@@ -1,5 +1,3 @@
-# backend.py
-
 from flask import Flask, jsonify
 import pandas as pd
 import os
@@ -8,13 +6,19 @@ import json
 
 app = Flask(__name__)
 
-# Function to fetch data from the API
 
+# Function to fetch data from the API
 
 def fetch_fixture_data():
     api_url = 'https://api-football-v1.p.rapidapi.com/v3/fixtures?league=39&season=2023'
-    headers = {
-        'x-rapidapi-key': 'd8aac0e59dmsh903ef91b3450d32p14e614jsn6d25591ff31d'}
+
+    # Retrieve API key from environment variable
+    rapidapi_key = os.environ.get('RAPIDAPI_KEY')
+
+    if rapidapi_key is None:
+        raise ValueError("RAPIDAPI_KEY environment variable is not set.")
+
+    headers = {'x-rapidapi-key': rapidapi_key}
 
     # Check if the data is already saved
     if os.path.exists('fixture_data.json'):
@@ -32,8 +36,8 @@ def fetch_fixture_data():
 
     return data
 
-# Helper function to parse a single match
 
+# Helper function to parse a single match
 
 def parse_single_match(match):
     return {
@@ -45,8 +49,8 @@ def parse_single_match(match):
         'away_logo': match['teams']['away']['logo']
     }
 
-# Function to parse JSON and create Pandas DataFrame
 
+# Function to parse JSON and create Pandas DataFrame
 
 def parse_json_to_dataframe(json_data):
     fixtures = json_data['response']
@@ -82,8 +86,8 @@ def get_fixtures():
     # Return the unescaped JSON response
     return jsonify({'fixtures': unescaped_json})
 
-# Define an endpoint to get match details
 
+# Define an endpoint to get match details
 
 @app.route('/api/match/<int:match_id>', methods=['GET'])
 def get_match_details(match_id):
