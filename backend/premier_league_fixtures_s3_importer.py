@@ -51,7 +51,7 @@ def fetch_and_store_fixtures(start_season, end_season):
         else:
             # Make API request
             response = requests.get(api_url, headers={'x-rapidapi-key': api_key},
-                                    params={'league': league_id, 'season': season, 'status': 'NS'})
+                                    params={'league': league_id, 'season': season})
 
             if response.status_code == 200:
                 # Store raw JSON response in S3
