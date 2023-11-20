@@ -6,3 +6,6 @@
 .idea/inspectionProfiles/profiles_settings.xml
 .idea/.gitignore
 .env
+ml/.ipynb_checkpoints/match_score_prediction-checkpoint.ipynb
+ml/.ipynb_checkpoints/predict_game_all_stats-checkpoint.ipynb
+ml/.ipynb_checkpoints/single_stat_prediction_for_game-checkpoint.ipynb
