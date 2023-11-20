@@ -16,3 +16,4 @@ backend.egg-info/PKG-INFO
 backend.egg-info/dependency_links.txt
 backend/__pycache__/football_backend_client.cpython-311.pyc
 backend/__pycache__/__init__.cpython-311.pyc
+backend/.ipynb_checkpoints/full_game_stats_combined_with_teams_rating-checkpoint.ipynb
