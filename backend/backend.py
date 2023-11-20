@@ -21,8 +21,8 @@ def fetch_fixture_data():
     headers = {'x-rapidapi-key': rapidapi_key}
 
     # Check if the data is already saved
-    if os.path.exists('fixture_data.json'):
-        with open('fixture_data.json', 'r') as file:
+    if os.path.exists('data/fixture_data.json'):
+        with open('data/fixture_data.json', 'r') as file:
             # Use json.load to load the data as a dictionary
             data = json.load(file)
     else:
@@ -31,7 +31,7 @@ def fetch_fixture_data():
         data = response.json()
 
         # Save the data for future use
-        with open('fixture_data.json', 'w') as file:
+        with open('data/fixture_data.json', 'w') as file:
             json.dump(data, file)
 
     return data
